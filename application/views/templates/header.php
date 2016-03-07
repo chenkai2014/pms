@@ -12,4 +12,5 @@
 </head>
 <body>
 你好，<?php echo $member_info[0]['name']; ?>
+<a href="/index.php/Welcome/logout">登出</a>
 
