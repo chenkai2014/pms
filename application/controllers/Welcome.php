@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('member_model');
+		$this->load->helper('url_helper');
+	}
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -26,6 +33,20 @@ class Welcome extends CI_Controller {
 	//用户注册
     public function register()
 	{
+      $data=array();
+	  $data['username']=$_POST['username'];
+	  $data['password']=$_POST['password'];
+	  $data['name']=$_POST['name'];
+	  $data['mobile']=$_POST['mobile'];
+	  $data['building_num']=$_POST['building_num'];
+	  $data['address_detail']=$_POST['address_detail'];
+
+		$result=$this->member_model->addMember($data);
+
+
+		$this->load->view('templates/header',$data);
+		$this->load->view('member_home',$data);
+		$this->load->view('templates/footer',$data);
 
 	}
 
