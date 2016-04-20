@@ -6,7 +6,5 @@
  * Time: 21:10
  */
 ?>
-<?php print_r('SESSION内容：'); ?>
-<?php var_dump($_SESSION); ?>
 </body>
 </html>

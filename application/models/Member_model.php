@@ -11,13 +11,14 @@ class Member_model extends CI_Model{
 
     public function __construct()
     {
+        parent::__construct();
         $this->load->database();
     }
 
     //新增用户
     public function addMember($data)
     {
-        $this->db->insert('member',$data);
+        return $this->db->insert('member',$data);
     }
 
 
