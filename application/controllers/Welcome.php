@@ -3,13 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('member_model');
-		$this->load->helper('url_helper');
-	}
-
 	/**
 	 * Index Page for this controller.
 	 *
@@ -25,6 +18,13 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->helper('url_helper');
+	}
+
 	public function index()
 	{
 		$this->load->view('welcome_message');
@@ -33,20 +33,6 @@ class Welcome extends CI_Controller {
 	//用户注册
     public function register()
 	{
-      $data=array();
-	  $data['username']=$_POST['username'];
-	  $data['password']=$_POST['password'];
-	  $data['name']=$_POST['name'];
-	  $data['mobile']=$_POST['mobile'];
-	  $data['building_num']=$_POST['building_num'];
-	  $data['address_detail']=$_POST['address_detail'];
-
-		$result=$this->member_model->addMember($data);
-
-
-		$this->load->view('templates/header',$data);
-		$this->load->view('member_home',$data);
-		$this->load->view('templates/footer',$data);
 
 	}
 
@@ -69,18 +55,29 @@ class Welcome extends CI_Controller {
 		//获取用户信息
 		$this->load->model('member_model');
 		$result=$this->member_model->getMemberInfo($username,$password);
-		$data['member_info']=$result->result_array();
+		$data['member_info']=$result;
 
-		if(count($data['member_info'])==1)
+		if(!empty($data['member_info'])&&$data['member_info']['is_super']==1)
 		{
-			//将用户信息放入Session
 			$_SESSION['is_login']=1;
-			$_SESSION['member_id']=$data['member_info'][0]['member_id'];
-			$_SESSION['member_name']=$data['member_info'][0]['name'];
+			$_SESSION['member_id']=$data['member_info']['member_id'];
+			$_SESSION['member_name']=$data['member_info']['name'];
 
-			$this->load->view('templates/header',$data);
-			$this->load->view('member_home',$data);
-			$this->load->view('templates/footer',$data);
+			$member_list=$this->member_model->getMemberList();
+			$data=array();
+			$data['member_list']=$member_list;
+
+			$this->load->view('templates/header_admin',$data);
+			$this->load->view('member_index_admin',$data);
+		}
+		elseif(!empty($data['member_info'])&&$data['member_info']['is_super']==0)
+		{
+			$_SESSION['is_login']=1;
+			$_SESSION['member_id']=$data['member_info']['member_id'];
+			$_SESSION['member_name']=$data['member_info']['name'];
+
+			$this->load->view('home/templates/header',$data);
+			$this->load->view('home/member.index',$data);
 		}
 		else
 		{
