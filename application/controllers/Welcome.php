@@ -76,13 +76,12 @@ class Welcome extends CI_Controller {
 			$_SESSION['member_id']=$data['member_info']['member_id'];
 			$_SESSION['member_name']=$data['member_info']['name'];
 
-			$this->load->view('home/templates/header',$data);
-			$this->load->view('home/member.index',$data);
+			$this->load->view('templates/header_home',$data);
+			//$this->load->view('home/member.index',$data);
 		}
 		else
 		{
 			$this->load->view('errors/error.php',$data);
 		}
-
 	}
 }

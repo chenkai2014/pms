@@ -16,7 +16,7 @@ class Repair_admin extends CI_Controller{
         $repair_list=$this->repair_model->getRepairList($condition);
         if(!empty($repair_list)){
             foreach($repair_list as $key=>$value){
-              $house_info=$this->house_model->getHouseInfo(array('house_id'=>$value['house_id']));
+                $house_info=$this->house_model->getHouseInfo(array('house_id'=>$value['house_id']));
                 $repair_list[$key]['house_name']=$house_info['house_name'];
             }
         }

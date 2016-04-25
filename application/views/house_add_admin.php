@@ -3,7 +3,7 @@
     <form method="post" action="/index.php/house_admin/save">
         停车位ID：<input type="text" name="carport_id" value="">
         楼宇ID：<input type="text" name="building_id" value="">
-        房间名：<input type="text" name="house_name" value="">
+        房间ID：<input type="text" name="house_id" value="">
         电话：<input type="text" name="telephone" value="">
         住房单元号：<input type="text" name="unit_num" value="">
         住房状态：<input type="text" name="status" value="">
