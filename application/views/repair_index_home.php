@@ -1,14 +1,5 @@
 <?php ?>
 <div>
-    <!--<form method="get" action="/index.php/Building_admin/index">
-        <table>
-            <tr>
-                <td>楼宇号：<input type="text" name="building_num"></td>
-                <td><input type="submit" value="搜索"></td>
-                <td><a href="/index.php/Building_admin/add">添加</a></td>
-            </tr>
-        </table>
-    </form>-->
     <table>
         <tr>
             <td>住房名</td>
@@ -31,8 +22,26 @@
                 <td><?php echo $value['repair_name']; ?></td>
                 <td><?php if($value['status']==0){echo '未维修';}elseif($value['status']==10){echo '维修中';}elseif($value['status']==20){echo '维修完成';}  ?></td>
                 <td><?php echo $value['remark']; ?></td>
-                <td><a href="/index.php/repair_admin/showEdit?repair_id=<?php echo $value['repair_id']; ?>">编辑</a>丨<a href="/index.php/repair_admin/delete?repair_id=<?php echo $value['repair_id']; ?>">删除</a></td>
+                <td><?php if($value['status']!=20){ ?><a href="/index.php/repair_home/finish?repair_id=<?php echo $value['repair_id']; ?>">确认完成</a>丨<?php }else{echo "";} ?><a href="/index.php/repair_home/delete?repair_id=<?php echo $value['repair_id']; ?>">删除</a></td>
             </tr>
         <?php } ?>
     </table>
+
+    <form method="post" action="/index.php/repair_home/save">
+        <table>
+            <tr>
+                <td>新增保修表</td>
+            </tr>
+            <tr>
+                <td>标题:<input type="text" name="title" value=""></td>
+                <td>内容:<input type="text" name="content" value=""></td>
+                <td>备注:<input type="text" name="remark" value=""></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="确认提交"></td>
+            </tr>
+        </table>
+    </form>
+
+
 </div>

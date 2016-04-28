@@ -26,7 +26,7 @@
 <?php foreach($member_list as $value){ ?>
     <tr>
         <td><?php echo $value['member_id']; ?></td>
-        <td><?php echo $value['house_name']; ?></td>
+        <td><?php echo $value['house_id']; ?></td>
         <td><?php echo $value['username']; ?></td>
         <td><?php echo $value['password']; ?></td>
         <td><?php echo $value['name']; ?></td>

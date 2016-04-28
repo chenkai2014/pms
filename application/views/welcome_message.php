@@ -28,7 +28,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</form>
 
 </div>
-
-
 </body>
+<script src="<?php echo base_url(); ?>/jquery/jquery.js"></script>
 </html>
