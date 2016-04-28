@@ -30,6 +30,12 @@ class Charge_model extends CI_Model{
         return $query->result_array();
     }
 
+    public function getChargeTypeList($condition=array())
+    {
+        $query=$this->db->get_where('charge_type',$condition);
+        return $query->result_array();
+    }
+
     public function deleteCharge($condition=array()){
         return $this->db->delete('charge', $condition);
     }
@@ -37,6 +43,12 @@ class Charge_model extends CI_Model{
     public function editCharge($data,$condition){
         $this->db->where($condition);
         return $this->db->update('charge', $data);
+    }
+
+    public function getTypeInfoById($type_id)
+    {
+        $query = $this->db->get_where('charge_type',array('type_id'=>$type_id));
+        return $query->row_array();
     }
 
 
