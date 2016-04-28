@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-04-28 11:21:48
+-- Generation Time: 2016-04-28 15:34:16
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -81,10 +81,18 @@ CREATE TABLE IF NOT EXISTS `charge` (
   `handleName` varchar(255) NOT NULL COMMENT '单据填写人员姓名',
   `chargeName` varchar(255) NOT NULL COMMENT '收费人员姓名',
   `paymentMoney` decimal(10,2) NOT NULL COMMENT '缴费金额',
-  `status` tinyint(4) NOT NULL COMMENT '缴费状态',
+  `status` tinyint(4) NOT NULL DEFAULT '10' COMMENT '缴费状态 10未缴费 20已缴费',
   `remark` varchar(255) NOT NULL COMMENT '备注',
   PRIMARY KEY (`charge_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='收费管理表' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='收费管理表' AUTO_INCREMENT=4 ;
+
+--
+-- 转存表中的数据 `charge`
+--
+
+INSERT INTO `charge` (`charge_id`, `type_id`, `house_id`, `invoiceNum`, `createTime`, `paymentTime`, `handleName`, `chargeName`, `paymentMoney`, `status`, `remark`) VALUES
+(2, 1, 1, '11221212', 0, 0, '戴红', '戴轰轰', '10.00', 10, '无'),
+(3, 3, 1, '23463516', 0, 0, 'susu', '熊熊', '233.00', 10, '无');
 
 -- --------------------------------------------------------
 
@@ -96,7 +104,17 @@ CREATE TABLE IF NOT EXISTS `charge_type` (
   `type_id` int(10) NOT NULL AUTO_INCREMENT,
   `type_name` varchar(255) NOT NULL COMMENT '缴费类型',
   PRIMARY KEY (`type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- 转存表中的数据 `charge_type`
+--
+
+INSERT INTO `charge_type` (`type_id`, `type_name`) VALUES
+(1, '水费'),
+(2, '电费'),
+(3, '网络费'),
+(4, '物业费');
 
 -- --------------------------------------------------------
 
