@@ -23,6 +23,7 @@ class Welcome extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper('url_helper');
+		$this->load->library('session');
 	}
 
 	public function index()
@@ -39,9 +40,10 @@ class Welcome extends CI_Controller {
 	//用户登出
 	public function logout()
 	{
-       unset($_SESSION['member_id']);
-	   unset($_SESSION['member_name']);
-	   unset($_SESSION['is_login']);
+		$this->session->unset_userdata('member_id');
+		$this->session->unset_userdata('member_name');
+		$this->session->unset_userdata('is_login');
+		$this->session->unset_userdata('house_id');
 
 	   header('Location:http://localhost/index.php/Welcome/index');
 	}
@@ -59,9 +61,19 @@ class Welcome extends CI_Controller {
 
 		if(!empty($data['member_info'])&&$data['member_info']['is_super']==1)
 		{
-			$_SESSION['is_login']=1;
-			$_SESSION['member_id']=$data['member_info']['member_id'];
-			$_SESSION['member_name']=$data['member_info']['name'];
+			//$_SESSION['is_login']=1;
+			//$_SESSION['member_id']=$data['member_info']['member_id'];
+			//$_SESSION['member_name']=$data['member_info']['name'];
+
+			$arr['is_login']=1;
+			$arr['member_id']=$data['member_info']['member_id'];
+			$arr['member_name']=$data['member_info']['name'];
+			$arr['house_id']=$data['member_info']['house_id'];
+
+			$this->session->set_userdata($arr);
+			$this->session->set_userdata($arr);
+			$this->session->set_userdata($arr);
+			$this->session->set_userdata($arr);
 
 			$member_list=$this->member_model->getMemberList();
 			$data=array();
@@ -72,12 +84,22 @@ class Welcome extends CI_Controller {
 		}
 		elseif(!empty($data['member_info'])&&$data['member_info']['is_super']==0)
 		{
-			$_SESSION['is_login']=1;
-			$_SESSION['member_id']=$data['member_info']['member_id'];
-			$_SESSION['member_name']=$data['member_info']['name'];
+			$arr['is_login']=1;
+			$arr['member_id']=$data['member_info']['member_id'];
+			$arr['member_name']=$data['member_info']['name'];
+			$arr['house_id']=$data['member_info']['house_id'];
+
+			$this->session->set_userdata($arr);
+			$this->session->set_userdata($arr);
+			$this->session->set_userdata($arr);
+			$this->session->set_userdata($arr);
+
+			$member_info=$this->member_model->getMemberDetailInfoById($data['member_info']['member_id']);
+			$data=array();
+			$data['member_info']=$member_info;
 
 			$this->load->view('templates/header_home',$data);
-			//$this->load->view('home/member.index',$data);
+			$this->load->view('member_index_home',$data);
 		}
 		else
 		{

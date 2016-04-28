@@ -5,14 +5,13 @@ class Member_home extends CI_Controller{
     {
         parent::__construct();
         $this->load->helper('url_helper');
+        $this->load->library('session');
     }
 
     public function index(){
         $this->load->model('member_model');
-        $condition=array();
-        $condition['member_id']=$_SESSION['member_id'];
-        $member_info=$this->member_model->getMember($condition);
-
+        $member_id=$this->session->userdata('member_id');
+        $member_info=$this->member_model->getMemberDetailInfoById($member_id);
         $data=array();
         $data['member_info']=$member_info;
 
