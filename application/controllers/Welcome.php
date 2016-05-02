@@ -28,14 +28,11 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->view('templates/header');
 		$this->load->view('welcome_message');
+		$this->load->view('templates/footer_home');
 	}
 
-	//用户注册
-    public function register()
-	{
-
-	}
 
 	//用户登出
 	public function logout()
@@ -61,10 +58,6 @@ class Welcome extends CI_Controller {
 
 		if(!empty($data['member_info'])&&$data['member_info']['is_super']==1)
 		{
-			//$_SESSION['is_login']=1;
-			//$_SESSION['member_id']=$data['member_info']['member_id'];
-			//$_SESSION['member_name']=$data['member_info']['name'];
-
 			$arr['is_login']=1;
 			$arr['member_id']=$data['member_info']['member_id'];
 			$arr['member_name']=$data['member_info']['name'];
@@ -100,6 +93,7 @@ class Welcome extends CI_Controller {
 
 			$this->load->view('templates/header_home',$data);
 			$this->load->view('member_index_home',$data);
+			$this->load->view('templates/footer_home',$data);
 		}
 		else
 		{

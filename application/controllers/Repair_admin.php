@@ -73,6 +73,7 @@ class Repair_admin extends CI_Controller{
         $repair_info['house_name']=$house_info['house_name'];
         $data['repair_info']=$repair_info;
 
+        $this->load->view('templates/header_admin',$data);
         $this->load->view('repair_edit_admin',$data);
     }
 

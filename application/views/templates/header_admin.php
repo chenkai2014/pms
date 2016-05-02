@@ -1,17 +1,15 @@
 <?php ?>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="<?php echo base_url(); ?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<a href="/index.php/Welcome/logout">登出</a>
-<ul>
-    <li><a href="/index.php/member_admin/index">用户管理</a></li>
-    <li><a href="/index.php/carport_admin/index">停车位管理</a></li>
-    <li><a href="/index.php/repair_admin/index">报修管理</a></li>
-    <li><a href="/index.php/charge_admin/index">缴费管理</a></li>
-    <li><a href="/index.php/building_admin/index">楼宇管理</a></li>
-    <li><a href="/index.php/house_admin/index">住户管理</a></li>
-    <li><a href="/index.php/complain_admin/index">投诉管理</a></li>
-</ul>
+
+
+
 

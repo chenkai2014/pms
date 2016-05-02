@@ -27,6 +27,7 @@ class Member_admin extends CI_Controller{
 
 
     public function add(){
+        $this->load->view('templates/header_admin');
         $this->load->view('member_add_admin');
     }
 
@@ -70,6 +71,7 @@ class Member_admin extends CI_Controller{
         $member_info=$this->member_model->getMember (array('member_id'=>$_GET['member_id']));
         $data['member_info']=$member_info;
 
+        $this->load->view('templates/header_admin',$data);
         $this->load->view('member_edit_admin',$data);
     }
 
@@ -89,15 +91,11 @@ class Member_admin extends CI_Controller{
 
         $result=$this->member_model->editMember($data,$condition);
         if($result){
-            //$this->index();
             redirect('http://localhost/index.php/member_admin/index');
         }
         else{
             show_404();
         }
-
-
     }
-
 
 }

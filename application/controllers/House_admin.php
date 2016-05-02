@@ -24,6 +24,7 @@ class House_admin extends CI_Controller{
 
 
     public function add(){
+        $this->load->view('templates/header_admin');
         $this->load->view('house_add_admin');
     }
 
@@ -33,12 +34,11 @@ class House_admin extends CI_Controller{
         $data=array();
         $data['carport_id']=$_POST['carport_id'];
         $data['building_id']=$_POST['building_id'];
-        $data['house_name']=$_POST['house_name'];
+        $data['house_id']=$_POST['house_id'];
         $data['telephone']=$_POST['telephone'];
         $data['unit_num']=$_POST['unit_num'];
         $data['status']=$_POST['status'];
         $data['move_in_time']=$_POST['move_in_time'];
-        $data['move_out_time']=$_POST['move_out_time'];
         $data['remark']=$_POST['remark'];
 
         $result=$this->house_model->addHouse($data);
@@ -69,6 +69,7 @@ class House_admin extends CI_Controller{
         $house_info=$this->house_model->getHouseInfo(array('house_id'=>$_GET['house_id']));
         $data['house_info']=$house_info;
 
+        $this->load->view('templates/header_admin');
         $this->load->view('house_edit_admin',$data);
     }
 
@@ -80,7 +81,7 @@ class House_admin extends CI_Controller{
         $data=array();
         $data['carport_id']=$_GET['carport_id'];
         $data['building_id']=$_GET['building_id'];
-        $data['house_name']=$_GET['house_name'];
+        $data['house_id']=$_GET['house_id'];
         $data['telephone']=$_GET['telephone'];
         $data['unit_num']=$_GET['unit_num'];
         $data['status']=$_GET['status'];
