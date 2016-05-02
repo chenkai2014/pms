@@ -24,6 +24,7 @@ class Building_admin extends CI_Controller{
 
 
     public function add(){
+        $this->load->view('templates/header_admin');
         $this->load->view('building_add_admin');
     }
 
@@ -64,6 +65,7 @@ class Building_admin extends CI_Controller{
         $building_info=$this->building_model->getBuildingInfo(array('building_id'=>$_GET['building_id']));
         $data['building_info']=$building_info;
 
+        $this->load->view('templates/header_admin');
         $this->load->view('building_edit_admin',$data);
     }
 

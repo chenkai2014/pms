@@ -27,6 +27,7 @@ class Carport_admin extends CI_Controller{
 
 
     public function add(){
+        $this->load->view('templates/header_admin');
         $this->load->view('carport_add_admin');
     }
 
@@ -68,6 +69,7 @@ class Carport_admin extends CI_Controller{
         $carport_info=$this->carport_model->getCarportInfo(array('carport_id'=>$_GET['carport_id']));
         $data['carport_info']=$carport_info;
 
+        $this->load->view('templates/header_admin');
         $this->load->view('carport_edit_admin',$data);
     }
 

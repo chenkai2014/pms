@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-04-28 15:34:16
+-- Generation Time: 2016-05-02 15:38:34
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -55,14 +55,14 @@ CREATE TABLE IF NOT EXISTS `carport` (
   `license` varchar(255) NOT NULL COMMENT '车牌号',
   `remark` varchar(255) NOT NULL COMMENT '备注',
   PRIMARY KEY (`carport_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='车位管理表' AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='车位管理表' AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `carport`
 --
 
 INSERT INTO `carport` (`carport_id`, `carport_name`, `area`, `license`, `remark`) VALUES
-(1, 'carport_1', '10.00', '浙A5588', ''),
+(1, 'carport_1', '15.00', '浙A5588', ''),
 (2, 'newbalance', '50.00', '浙B8888', '');
 
 -- --------------------------------------------------------
@@ -133,18 +133,18 @@ CREATE TABLE IF NOT EXISTS `complain` (
   `content` varchar(255) NOT NULL COMMENT '投诉内容',
   `handle_name` varchar(255) DEFAULT NULL COMMENT '处理人员姓名',
   `handle_info` varchar(255) DEFAULT NULL COMMENT '处理情况',
-  `status` tinyint(4) NOT NULL DEFAULT '10' COMMENT '审核状态 10未处理',
+  `status` tinyint(4) NOT NULL DEFAULT '10' COMMENT '审核状态 10未处理 20正在处理 30处理完成',
   `remark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`complain_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='投诉管理表' AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='投诉管理表' AUTO_INCREMENT=6 ;
 
 --
 -- 转存表中的数据 `complain`
 --
 
 INSERT INTO `complain` (`complain_id`, `member_id`, `title`, `audit_name`, `create_time`, `modify_time`, `finish_time`, `content`, `handle_name`, `handle_info`, `status`, `remark`) VALUES
-(1, 1, '楼下养狗', '', 0, 0, 0, '狗在晚上一直叫', '', '', 10, '没别的事'),
-(4, 1, 'LOL', NULL, 1461832977, 0, 0, 'LOL', NULL, NULL, 10, '大家一起来玩啊');
+(4, 1, 'LOL', '小白', 1461832977, 0, 1462181803, 'LOL', '小飞龙', '问题已经完全解决了', 30, '大家一起来玩啊'),
+(5, 1, '楼下装修', NULL, 1462182208, 0, 0, '经常半夜装修', NULL, NULL, 10, '请尽快处理');
 
 -- --------------------------------------------------------
 
@@ -159,19 +159,22 @@ CREATE TABLE IF NOT EXISTS `house` (
   `house_name` varchar(255) NOT NULL,
   `telephone` int(50) NOT NULL,
   `unit_num` int(10) NOT NULL COMMENT '房间单元号',
-  `status` tinyint(4) NOT NULL COMMENT '房间状态',
-  `move_in_time` int(10) NOT NULL,
-  `move_out_time` int(10) NOT NULL,
-  `remark` int(255) NOT NULL,
+  `status` tinyint(4) NOT NULL COMMENT '房间状态 10未使用 20使用中',
+  `move_in_time` int(10) DEFAULT NULL,
+  `move_out_time` int(10) DEFAULT NULL,
+  `remark` int(255) DEFAULT NULL,
   PRIMARY KEY (`house_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='住户信息表' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='住户信息表' AUTO_INCREMENT=5 ;
 
 --
 -- 转存表中的数据 `house`
 --
 
 INSERT INTO `house` (`house_id`, `carport_id`, `building_id`, `house_name`, `telephone`, `unit_num`, `status`, `move_in_time`, `move_out_time`, `remark`) VALUES
-(1, 1, 1, '301', 2147483647, 48, 20, 2147483647, 1111111111, 0);
+(1, 1, 1, '301', 2147483647, 48, 20, 2147483647, 1111111111, 0),
+(2, 1, 2, '', 2147483647, 34, 20, 0, NULL, 0),
+(3, 1, 2, '', 2147483647, 23, 20, 0, NULL, 0),
+(4, 2, 1, '', 2147483647, 34, 20, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -218,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `repair` (
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '维修状态0等待维修 10维修中 20维修完成',
   `remark` varchar(255) NOT NULL,
   PRIMARY KEY (`repair_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='保修管理表' AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='保修管理表' AUTO_INCREMENT=6 ;
 
 --
 -- 转存表中的数据 `repair`
@@ -226,7 +229,6 @@ CREATE TABLE IF NOT EXISTS `repair` (
 
 INSERT INTO `repair` (`repair_id`, `house_id`, `title`, `content`, `repair_time`, `create_time`, `repair_name`, `status`, `remark`) VALUES
 (3, 1, '马桶保修', '马桶漏水', 0, 0, '熊熊', 20, ''),
-(4, 2, '马桶保修', '马桶漏水', 0, 0, '熊熊', 10, ''),
 (5, 1, '书桌维修', '我家的书桌脚坏了', 0, 1461830043, '', 0, '尽量快一点');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

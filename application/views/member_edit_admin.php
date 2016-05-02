@@ -1,14 +1,30 @@
-<?php ?>
-<div>
-    <form method="get" action="/index.php/member_admin/edit">
-        <input type="hidden" name="member_id" value="<?php echo $member_info['member_id'] ?>">
-        住房名：<input type="text" name="house_name" value="<?php echo $member_info['house_name'] ?>">
-        用户名：<input type="text" name="username" value="<?php echo $member_info['username'] ?>">
-        密码：<input type="text" name="password" value="<?php echo $member_info['password'] ?>">
-        姓名：<input type="text" name="name" value="<?php echo $member_info['name'] ?>">
-        手机号：<input type="text" name="mobile" value="<?php echo $member_info['mobile'] ?>">
-        楼宇号：<input type="text" name="building_num" value="<?php echo $member_info['building_num'] ?>">
-        详细信息：<input type="text" name="address_detail" value="<?php echo $member_info['address_detail'] ?>">
-        <input type="submit" value="确定修改">
-    </form>
+<div class="container">
+    <div class="row">
+        <ul class="nav nav-pills">
+            <ul class="nav nav-pills">
+                <li role="presentation"><a href="/index.php/member_admin/index">用户管理</a></li>
+                <li role="presentation"><a href="/index.php/carport_admin/index">停车位管理</a></li>
+                <li role="presentation"><a href="/index.php/repair_admin/index">报修管理</a></li>
+                <li role="presentation"><a href="/index.php/charge_admin/index">缴费管理</a></li>
+                <li role="presentation"><a href="/index.php/building_admin/index">楼宇管理</a></li>
+                <li role="presentation"><a href="/index.php/house_admin/index">住户管理</a></li>
+                <li role="presentation"><a href="/index.php/complain_admin/index">投诉管理</a></li>
+                <li role="presentation"><a href="/index.php/Welcome/logout">登出</a></li>
+                <li role="presentation" class="active"><a href="">编辑会员</a></li>
+            </ul>
+        </ul>
+    </div>
+    <div class="row">
+        <form method="get" action="/index.php/member_admin/edit">
+            <input type="hidden" name="member_id" value="<?php echo $member_info['member_id'] ?>">
+            <div class="form-group">住房ID：<input type="text" name="house_id" class="form-control" value="<?php echo $member_info['house_id'] ?>"></div>
+            <div class="form-group">用户名：<input type="text" name="username" class="form-control" value="<?php echo $member_info['username'] ?>"></div>
+            <div class="form-group">密码：<input type="text" name="password" class="form-control" value="<?php echo $member_info['password'] ?>"></div>
+            <div class="form-group">姓名：<input type="text" name="name" class="form-control" value="<?php echo $member_info['name'] ?>"></div>
+            <div class="form-group">手机号：<input type="text" name="mobile" class="form-control" value="<?php echo $member_info['mobile'] ?>"></div>
+            <div class="form-group">楼宇号：<input type="text" name="building_num" class="form-control" value="<?php echo $member_info['building_num'] ?>"></div>
+            <div class="form-group">详细信息：<input type="text" name="address_detail" class="form-control" value="<?php echo $member_info['address_detail'] ?>"></div>
+            <div class="form-group"><input type="submit" class="form-control btn-success" value="确定修改"></div>
+        </form>
+    </div>
 </div>

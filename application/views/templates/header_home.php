@@ -1,14 +1,14 @@
 <?php ?>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="<?php echo base_url(); ?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<a href="/index.php/Welcome/logout">登出</a>
-<ul>
-    <li><a href="/index.php/member_home/index">用户基本信息</a></li>
-    <li><a href="/index.php/repair_home/index">用户报修</a></li>
-    <li><a href="/index.php/charge_home/index">用户缴费</a></li>
-    <li><a href="/index.php/complain_home/index">用户投诉</a></li>
-</ul>
+
+
 
