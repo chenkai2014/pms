@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-05-02 15:38:34
+-- Generation Time: 2016-05-05 14:45:01
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -33,14 +33,24 @@ CREATE TABLE IF NOT EXISTS `building` (
   `orientation` varchar(255) NOT NULL COMMENT '朝向',
   `remark` varchar(255) NOT NULL COMMENT '备注',
   PRIMARY KEY (`building_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='楼宇表' AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='楼宇表' AUTO_INCREMENT=12 ;
 
 --
 -- 转存表中的数据 `building`
 --
 
 INSERT INTO `building` (`building_id`, `building_num`, `building_floor`, `orientation`, `remark`) VALUES
-(1, 1, 6, '东', '没有备注');
+(1, 1, 6, '东', ''),
+(2, 2, 6, '南', ''),
+(3, 3, 7, '西南', ''),
+(4, 4, 8, '西南', ''),
+(5, 5, 8, '西北', ''),
+(6, 6, 7, '北', ''),
+(7, 7, 7, '北', ''),
+(8, 8, 6, '西北', ''),
+(9, 9, 6, '东南', ''),
+(10, 10, 6, '南', ''),
+(11, 11, 6, '南', '');
 
 -- --------------------------------------------------------
 
@@ -55,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `carport` (
   `license` varchar(255) NOT NULL COMMENT '车牌号',
   `remark` varchar(255) NOT NULL COMMENT '备注',
   PRIMARY KEY (`carport_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='车位管理表' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='车位管理表' AUTO_INCREMENT=11 ;
 
 --
 -- 转存表中的数据 `carport`
@@ -63,7 +73,15 @@ CREATE TABLE IF NOT EXISTS `carport` (
 
 INSERT INTO `carport` (`carport_id`, `carport_name`, `area`, `license`, `remark`) VALUES
 (1, 'carport_1', '15.00', '浙A5588', ''),
-(2, 'newbalance', '50.00', '浙B8888', '');
+(2, 'newbalance', '50.00', '浙B8888', ''),
+(3, 'carport_3', '15.00', '浙B3456', ''),
+(4, 'carport_4', '12.00', '浙A4356', ''),
+(5, 'carport_5', '11.00', '浙C982Y', ''),
+(6, 'carport_6', '10.50', '浙B7YB3', ''),
+(7, 'carport_7', '18.00', '浙C8888', ''),
+(8, 'carport_8', '8.00', '浙G8k7k', ''),
+(9, 'carport_9', '5.00', '无', ''),
+(10, 'carport_10', '6.50', '无', '');
 
 -- --------------------------------------------------------
 
@@ -84,15 +102,14 @@ CREATE TABLE IF NOT EXISTS `charge` (
   `status` tinyint(4) NOT NULL DEFAULT '10' COMMENT '缴费状态 10未缴费 20已缴费',
   `remark` varchar(255) NOT NULL COMMENT '备注',
   PRIMARY KEY (`charge_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='收费管理表' AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='收费管理表' AUTO_INCREMENT=9 ;
 
 --
 -- 转存表中的数据 `charge`
 --
 
 INSERT INTO `charge` (`charge_id`, `type_id`, `house_id`, `invoiceNum`, `createTime`, `paymentTime`, `handleName`, `chargeName`, `paymentMoney`, `status`, `remark`) VALUES
-(2, 1, 1, '11221212', 0, 0, '戴红', '戴轰轰', '10.00', 10, '无'),
-(3, 3, 1, '23463516', 0, 0, 'susu', '熊熊', '233.00', 10, '无');
+(8, 1, 1, '24135346', 1462451147, 0, '不知道', '', '123.00', 10, '');
 
 -- --------------------------------------------------------
 
@@ -200,9 +217,9 @@ CREATE TABLE IF NOT EXISTS `member` (
 --
 
 INSERT INTO `member` (`member_id`, `house_id`, `username`, `password`, `name`, `mobile`, `building_num`, `address_detail`, `is_super`) VALUES
-(1, 1, 'user01', '123456', 'dhh', '88888888', 1, '1号楼203', 0),
-(6, 1, 'admin', '123456', '待遇风', '1234567', 1, '临安大学', 1),
-(7, 1, 'user033', '123456', 'user02', '18854121500', 6, 'sd', 0);
+(1, 1, 'user01', '123456', '赵红静', '88888888', 1, '1号楼203', 0),
+(6, 1, 'admin', '123456', '戴宇峰', '1234567', 1, '临安大学', 1),
+(7, 1, 'user033', '123456', '王聪', '18854121500', 6, 'sd', 0);
 
 -- --------------------------------------------------------
 

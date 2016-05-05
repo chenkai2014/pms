@@ -14,9 +14,16 @@
         </ul>
     </div>
     <div class="row">
+        <form method="get" class="form-inline" action="/index.php/complain_admin/index">
+            <div class="form-group">会员名：<input class="form-control" type="text" name="username" value=""></div>
+            <div class="form-group"><input class="form-control btn-success" type="submit" value="搜索"></div>
+        </form>
+    </div>
+    <div class="row">
         <table class="table">
             <tr>
                 <td>标题</td>
+                <td>投诉人</td>
                 <td>审核人员</td>
                 <td>提交时间</td>
                 <td>完成时间</td>
@@ -30,6 +37,7 @@
             <?php foreach($complain_list as $value){ ?>
                 <tr>
                     <td><?php echo $value['title']; ?></td>
+                    <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['audit_name']; ?></td>
                     <td><?php echo date('Y-m-d H:i:s',$value['create_time']); ?></td>
                     <td><?php if($value['finish_time']==0){echo '未完成';}else{echo date('Y-m-d H:i:s',$value['finish_time']);} ?></td>

@@ -13,7 +13,17 @@ class Complain_admin extends CI_Controller{
         $this->load->model('complain_model');
         $this->load->model('member_model');
 
-        $complain_list=$this->complain_model->getComplainList();
+        $condition=array();
+        if(!empty($_GET['username'])){
+            $member_info=$this->member_model->getMember(array('username'=>$_GET['username']));
+            $condition['member_id']=$member_info['member_id'];
+        }
+
+        $complain_list=$this->complain_model->getComplainList($condition);
+        foreach($complain_list as $key=>$complain_info){
+            $member_info=$this->member_model->getMember(array('member_id'=>$complain_info['member_id']));
+            $complain_list[$key]['username']=$member_info['username'];
+        }
 
 
         $data=array();

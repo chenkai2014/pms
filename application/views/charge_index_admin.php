@@ -40,14 +40,14 @@
                     <td><?php echo $value['type_name']; ?></td>
                     <td><?php echo $value['house_name']; ?></td>
                     <td><?php echo $value['invoiceNum']; ?></td>
-                    <td><?php echo $value['createTime']; ?></td>
-                    <td><?php echo $value['paymentTime']; ?></td>
+                    <td><?php echo date('Y-m-d H:i:s',$value['createTime']); ?></td>
+                    <td><?php echo date('Y-m-d H:i:s',$value['paymentTime']); ?></td>
                     <td><?php echo $value['handleName']; ?></td>
                     <td><?php echo $value['chargeName']; ?></td>
                     <td><?php echo $value['paymentMoney']; ?></td>
-                    <td><?php echo $value['status']; ?></td>
+                    <td><?php if($value['status']==10){echo '未缴费';}elseif($value['status']==20){echo '已缴费';}  ?></td>
                     <td><?php echo $value['remark']; ?></td>
-                    <td><a href="/index.php/Charge_admin/showEdit?charge_id=<?php echo $value['charge_id']; ?>">编辑</a>丨<a href="/index.php/Charge_admin/delete?charge_id=<?php echo $value['charge_id']; ?>">删除</a></td>
+                    <td><?php if($value['status']==10){ ?><a href="/index.php/Charge_admin/showEdit?charge_id=<?php echo $value['charge_id']; ?>">缴费</a>丨<?php } ?><a href="/index.php/Charge_admin/delete?charge_id=<?php echo $value['charge_id']; ?>">删除</a></td>
                 </tr>
             <?php } ?>
         </table>
