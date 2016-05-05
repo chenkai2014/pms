@@ -81,7 +81,7 @@ class Member_admin extends CI_Controller{
         $condition['member_id']=$_GET['member_id'];
 
         $data=array();
-        $data['house_name']=$_GET['house_name'];
+        $data['house_id']=$_GET['house_id'];
         $data['username']=$_GET['username'];
         $data['password']=$_GET['password'];
         $data['name']=$_GET['name'];

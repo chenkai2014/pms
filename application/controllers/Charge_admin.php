@@ -34,19 +34,33 @@ class Charge_admin extends CI_Controller{
 
 
     public function add(){
-        $this->load->view('charge_add_admin');
+        $this->load->model('charge_model');
+        $this->load->model('house_model');
+
+        $charge_type_list=$this->charge_model->getChargeTypeList();
+        $house_list=$this->house_model->getHouseList();
+
+        $data=array();
+        $data['charge_type_list']=$charge_type_list;
+        $data['house_list']=$house_list;
+
+        $this->load->view('templates/header_admin');
+        $this->load->view('charge_add_admin',$data);
     }
 
     public function save(){
         $this->load->model('charge_model');
 
         $data=array();
-        $data['building_num']=$_POST['building_num'];
-        $data['building_floor']=$_POST['building_floor'];
-        $data['orientation']=$_POST['orientation'];
+        $data['type_id']=$_POST['type_id'];
+        $data['house_id']=$_POST['house_id'];
+        $data['invoiceNum']=$_POST['invoiceNum'];
+        $data['paymentMoney']=$_POST['paymentMoney'];
+        $data['createTime']=time();
         $data['remark']=$_POST['remark'];
+        $data['handleName']=$_POST['handleName'];
 
-        $result=$this->charge_model->addBuilding($data);
+        $result=$this->charge_model->addCharge($data);
         if($result){
             $this->index();
         }
@@ -72,26 +86,26 @@ class Charge_admin extends CI_Controller{
 
     public function showEdit(){
         $this->load->model('charge_model');
-        $building_info=$this->charge_model->getBuildingInfo(array('building_id'=>$_GET['building_id']));
-        $data['building_info']=$building_info;
 
+        $data=array();
+        $data['charge_id']=$_GET['charge_id'];
+
+        $this->load->view('templates/header_admin');
         $this->load->view('charge_edit_admin',$data);
     }
 
     public function edit(){
         $this->load->model('charge_model');
         $condition=array();
-        $condition['building_id']=$_GET['building_id'];
+        $condition['charge_id']=$_GET['charge_id'];
 
         $data=array();
-        $data['building_num']=$_GET['building_num'];
-        $data['building_floor']=$_GET['building_floor'];
-        $data['orientation']=$_GET['orientation'];
-        $data['remark']=$_GET['remark'];
+        $data['paymentTime']=time();
+        $data['chargeName']=$_GET['chargeName'];
+        $data['status']=20;
 
-        $result=$this->charge_model->editBuilding($data,$condition);
+        $result=$this->charge_model->editCharge($data,$condition);
         if($result){
-            //$this->index();
             redirect('http://localhost/index.php/charge_admin/index');
         }
         else{

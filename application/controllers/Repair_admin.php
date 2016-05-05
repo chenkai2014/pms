@@ -11,7 +11,10 @@ class Repair_admin extends CI_Controller{
         $this->load->model('repair_model');
         $this->load->model('house_model');
         $condition=array();
-
+        if(!empty($_GET['house_name'])){
+            $house_info=$this->house_model->getHouseInfo(array('house_name'=>$_GET['house_name']));
+            $condition['house_id']=$house_info['house_id'];
+        }
 
         $repair_list=$this->repair_model->getRepairList($condition);
         if(!empty($repair_list)){
@@ -23,6 +26,7 @@ class Repair_admin extends CI_Controller{
 
         $data=array();
         $data['repair_list']=$repair_list;
+
 
         $this->load->view('templates/header_admin',$data);
         $this->load->view('repair_index_admin',$data);

@@ -12,15 +12,13 @@
             <li role="presentation"><a href="/index.php/Welcome/logout">登出</a></li>
         </ul>
     </div>
-    <!--<form method="get" action="/index.php/Building_admin/index">
-        <table>
-            <tr>
-                <td>楼宇号：<input type="text" name="building_num"></td>
-                <td><input type="submit" value="搜索"></td>
-                <td><a href="/index.php/Building_admin/add">添加</a></td>
-            </tr>
-        </table>
-    </form>-->
+    <div class="row">
+        <form method="get" class="form-inline" action="/index.php/Repair_admin/index">
+            <div class="form-group">住房名：<input class="form-control" type="text" name="house_name"></div>
+            <div class="form-group"><input class="form-control btn-success" type="submit" value="搜索"></div>
+        </form>
+
+    </div>
     <div class="row">
         <table class="table">
             <tr>
