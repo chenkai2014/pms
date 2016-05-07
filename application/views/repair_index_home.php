@@ -27,8 +27,8 @@
                     <td><?php echo $value['house_name']; ?></td>
                     <td><?php echo $value['title']; ?></td>
                     <td><?php echo $value['content']; ?></td>
-                    <td><?php echo $value['create_time']; ?></td>
-                    <td><?php echo $value['repair_time']; ?></td>
+                    <td><?php echo date('Y-m-d H:i',$value['create_time']); ?></td>
+                    <td><?php echo date('Y-m-d H:i',$value['repair_time']); ?></td>
                     <td><?php echo $value['repair_name']; ?></td>
                     <td><?php if($value['status']==0){echo '未维修';}elseif($value['status']==10){echo '维修中';}elseif($value['status']==20){echo '维修完成';}  ?></td>
                     <td><?php echo $value['remark']; ?></td>

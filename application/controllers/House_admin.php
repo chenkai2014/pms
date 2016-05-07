@@ -9,11 +9,22 @@ class House_admin extends CI_Controller{
 
     public function index(){
         $this->load->model('house_model');
+        $this->load->model('building_model');
+        $this->load->model('carport_model');
         $condition=array();
-        /*if(!empty($_GET['building_num'])){
-            $condition['building_num']=$_GET['building_num'];
-        }*/
+        if(!empty($_GET['house_name'])){
+            $condition['house_name']=$_GET['house_name'];
+        }
+        if(!empty($_GET['unit_num'])){
+            $condition['unit_num']=$_GET['unit_num'];
+        }
         $house_list=$this->house_model->getHouseList($condition);
+        foreach($house_list as $key=>$value){
+            $carport_info=$this->carport_model->getCarportInfo(array('carport_id'=>$value['carport_id']));
+            $house_list[$key]['carport_name']=$carport_info['carport_name'];
+            $building_info=$this->building_model->getBuildingInfo(array('building_id'=>$value['building_id']));
+            $house_list[$key]['building_num']=$building_info['building_num'];
+        }
 
         $data=array();
         $data['house_list']=$house_list;
@@ -23,9 +34,20 @@ class House_admin extends CI_Controller{
     }
 
 
+    //添加住户页面
     public function add(){
+        $this->load->model('carport_model');
+        $this->load->model('building_model');
+
+        $carport_list=$this->carport_model->getCarportList();
+        $building_list=$this->building_model->getBuildingList();
+
+        $data=array();
+        $data['carport_list']=$carport_list;
+        $data['building_list']=$building_list;
+
         $this->load->view('templates/header_admin');
-        $this->load->view('house_add_admin');
+        $this->load->view('house_add_admin',$data);
     }
 
     public function save(){
@@ -34,11 +56,11 @@ class House_admin extends CI_Controller{
         $data=array();
         $data['carport_id']=$_POST['carport_id'];
         $data['building_id']=$_POST['building_id'];
-        $data['house_id']=$_POST['house_id'];
         $data['telephone']=$_POST['telephone'];
         $data['unit_num']=$_POST['unit_num'];
-        $data['status']=$_POST['status'];
-        $data['move_in_time']=$_POST['move_in_time'];
+        $data['house_name']=$_POST['house_name'];
+        $data['status']=20;
+        $data['move_in_time']=time();
         $data['remark']=$_POST['remark'];
 
         $result=$this->house_model->addHouse($data);
@@ -53,7 +75,7 @@ class House_admin extends CI_Controller{
     public function delete(){
         $this->load->model('house_model');
         $condition=array();
-        $condition['building_id']=$_GET['building_id'];
+        $condition['house_id']=$_GET['house_id'];
 
         $result=$this->house_model->deleteHouse($condition);
         if($result){
@@ -66,8 +88,17 @@ class House_admin extends CI_Controller{
 
     public function showEdit(){
         $this->load->model('house_model');
+        $this->load->model('carport_model');
         $house_info=$this->house_model->getHouseInfo(array('house_id'=>$_GET['house_id']));
+
+        $carport_info=$this->carport_model->getCarportInfo(array('carport_id'=>$house_info['carport_id']));
+        $house_info['carport_name']=$carport_info['carport_name'];
+
+        $carport_list=$this->carport_model->getCarportList();
+
+        $data=array();
         $data['house_info']=$house_info;
+        $data['carport_list']=$carport_list;
 
         $this->load->view('templates/header_admin');
         $this->load->view('house_edit_admin',$data);
@@ -80,18 +111,12 @@ class House_admin extends CI_Controller{
 
         $data=array();
         $data['carport_id']=$_GET['carport_id'];
-        $data['building_id']=$_GET['building_id'];
-        $data['house_id']=$_GET['house_id'];
         $data['telephone']=$_GET['telephone'];
-        $data['unit_num']=$_GET['unit_num'];
         $data['status']=$_GET['status'];
-        $data['move_in_time']=$_GET['move_in_time'];
-        $data['move_out_time']=$_GET['move_out_time'];
         $data['remark']=$_GET['remark'];
 
         $result=$this->house_model->editHouse($data,$condition);
         if($result){
-            //$this->index();
             redirect('http://localhost/index.php/house_admin/index');
         }
         else{

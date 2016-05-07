@@ -16,6 +16,14 @@
     <div class="row">
         <form method="get" class="form-inline" action="/index.php/complain_admin/index">
             <div class="form-group">会员名：<input class="form-control" type="text" name="username" value=""></div>
+            <div class="form-group">投诉状态：
+            <select class="form-control" name="status">
+                <option value=""></option>
+                <option value="10">未处理</option>
+                <option value="20">处理中</option>
+                <option value="30">处理完成</option>
+            </select>
+            </div>
             <div class="form-group"><input class="form-control btn-success" type="submit" value="搜索"></div>
         </form>
     </div>
@@ -44,7 +52,7 @@
                     <td><?php echo $value['content']; ?></td>
                     <td><?php echo $value['handle_name']; ?></td>
                     <td><?php echo $value['handle_info']; ?></td>
-                    <td><?php if($value['status']==10){echo '未处理';}elseif($value['status']==20){echo '正在处理';}elseif($value['status']==30){echo '处理完成';} ?></td>
+                    <td><?php if($value['status']==10){echo '未处理';}elseif($value['status']==20){echo '正在处理';}elseif($value['status']==30){echo '完成';} ?></td>
                     <td><?php echo $value['remark']; ?></td>
                     <td><?php if($value['status']==10){ ?><a href="/index.php/complain_admin/showEdit?complain_id=<?php echo $value['complain_id']; ?>">开始处理</a><?php }elseif($value['status']==20){ ?><a href="/index.php/complain_admin/showEdit?complain_id=<?php echo $value['complain_id']; ?>">处理完成</a><?php } ?>丨<a href="/index.php/complain_admin/delete?complain_id=<?php echo $value['complain_id']; ?>">删除</a></td>
                 </tr>

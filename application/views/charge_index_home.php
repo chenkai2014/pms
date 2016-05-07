@@ -15,11 +15,20 @@
                 <div class="form-group">
                     缴费类型：<?php
                     echo '<select class="form-control" name="type_id">';
+                    echo '<option value=""></option>';
                     foreach($charge_type_list as $value){
                         echo '<option value='.$value['type_id'].'>'.$value['type_name'].'</option>';
                     }
                     echo '</select>';
                     ?>
+                </div>
+                <div class="form-group">
+                    缴费状态：
+                    <select class="form-control" name="status">
+                        <option value=""></option>
+                        <option value="10">未缴费</option>
+                        <option value="20">已缴费</option>
+                    </select>
                 </div>
                 <div class="form-group"><input type="submit" class="form-control btn-success"  value="搜索"></div>
             </form>
@@ -36,20 +45,18 @@
                 <td>缴费金额</td>
                 <td>缴费状态</td>
                 <td>备注</td>
-                <td>操作</td>
             </tr>
             <?php foreach($charge_list as $value){ ?>
                 <tr>
                     <td><?php echo $value['type_name']; ?></td>
                     <td><?php echo $value['invoiceNum']; ?></td>
-                    <td><?php echo $value['createTime']; ?></td>
-                    <td><?php echo $value['paymentTime']; ?></td>
+                    <td><?php echo date('Y-m-d',$value['createTime']); ?></td>
+                    <td><?php if($value['paymentTime']!=0){echo date('Y-m-d',$value['paymentTime']);} ?></td>
                     <td><?php echo $value['handleName']; ?></td>
                     <td><?php echo $value['chargeName']; ?></td>
                     <td><?php echo $value['paymentMoney']; ?></td>
-                    <td><?php echo $value['status']; ?></td>
+                    <td><?php if($value['status']==10){echo '未缴费';}elseif($value['status']==20){echo '已缴费';}  ?></td>
                     <td><?php echo $value['remark']; ?></td>
-                    <td><a href="/index.php/Charge_home/delete?charge_id=<?php echo $value['charge_id']; ?>">删除</a></td>
                 </tr>
             <?php } ?>
         </table>

@@ -27,7 +27,7 @@
     <div class="row">
         <table class="table">
             <tr>
-                <td>住房ID</td>
+                <td>住房名</td>
                 <td>用户名</td>
                 <td>密码</td>
                 <td>姓名</td>
@@ -39,7 +39,7 @@
             </tr>
             <?php foreach($member_list as $value){ ?>
                 <tr>
-                    <td><?php echo $value['house_id']; ?></td>
+                    <td><?php echo $value['house_name']; ?></td>
                     <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['password']; ?></td>
                     <td><?php echo $value['name']; ?></td>

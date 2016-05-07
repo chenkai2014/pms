@@ -14,11 +14,10 @@
                 <td>标题</td>
                 <td>审核人员</td>
                 <td>投诉时间</td>
-                <td>修改时间</td>
                 <td>投诉内容</td>
                 <td>处理人员</td>
                 <td>处理情况</td>
-                <td>审核状态</td>
+                <td>处理状态</td>
                 <td>备注</td>
                 <td>操作</td>
             </tr>
@@ -26,13 +25,11 @@
                 <tr>
                     <td><?php echo $value['title']; ?></td>
                     <td><?php echo $value['audit_name']; ?></td>
-                    <td><?php echo $value['create_time']; ?></td>
-                    <td><?php echo $value['modify_time']; ?></td>
-                    <td><?php echo $value['finish_time']; ?></td>
+                    <td><?php echo date('Y-m-d H:i',$value['create_time']); ?></td>
                     <td><?php echo $value['content']; ?></td>
                     <td><?php echo $value['handle_name']; ?></td>
-                    <td><?php echo $value['handle_info']; ?></td>
-                    <td><?php if($value['status']==10){echo '未通过';}elseif($value['status']==20){echo '已通过';} ?></td>
+                    <td><?php if(empty($value['handle_info'])){echo '未完成';}else{echo $value['handle_info'];}  ?></td>
+                    <td><?php if($value['status']==10){echo '未处理';}elseif($value['status']==20){echo '正在处理';}elseif($value['status']==30){echo '完成';} ?></td>
                     <td><?php echo $value['remark']; ?></td>
                     <td><a href="/index.php/complain_home/delete?complain_id=<?php echo $value['complain_id']; ?>">删除</a></td>
                 </tr>
