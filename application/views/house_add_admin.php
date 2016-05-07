@@ -17,13 +17,23 @@
     </div>
     <div class="row">
         <form method="post" action="/index.php/house_admin/save">
-            <div class="form-group">停车位ID：<input class="form-control" type="text" name="carport_id" value=""></div>
-            <div class="form-group">楼宇ID：<input class="form-control" type="text" name="building_id" value=""></div>
-            <div class="form-group">房间ID：<input class="form-control" type="text" name="house_id" value=""></div>
+            <div class="form-group">停车位：<?php
+                echo '<select class="form-control" name="carport_id">';
+                foreach($carport_list as $key=>$value){
+                    echo '<option value="'.$value['carport_id'].'">'.$value['carport_name'].'</option>';
+                }
+                echo '</select>';
+                ?></div>
+            <div class="form-group">楼宇号：<?php
+                echo '<select class="form-control" name="building_id">';
+                foreach($building_list as $key=>$value){
+                    echo '<option value="'.$value['building_id'].'">'.$value['building_num'].'</option>';
+                }
+                echo '</select>';
+                ?></div>
+            <div class="form-group">房间名：<input class="form-control" type="text" name="house_name" value=""></div>
             <div class="form-group">电话：<input class="form-control" type="text" name="telephone" value=""></div>
             <div class="form-group">住房单元号：<input class="form-control" type="text" name="unit_num" value=""></div>
-            <div class="form-group">住房状态：<input class="form-control" type="text" name="status" value=""></div>
-            <div class="form-group">迁入时间：<input class="form-control" type="text" name="move_in_time" value=""></div>
             <div class="form-group">备注：<input class="form-control" type="text" name="remark" value=""></div>
             <div class="form-group"><input class="form-control btn-success" type="submit" value="添加"></div>
         </form>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-05-05 14:45:01
+-- Generation Time: 2016-05-07 06:09:46
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `carport` (
 
 INSERT INTO `carport` (`carport_id`, `carport_name`, `area`, `license`, `remark`) VALUES
 (1, 'carport_1', '15.00', '浙A5588', ''),
-(2, 'newbalance', '50.00', '浙B8888', ''),
+(2, 'carport_119', '50.00', '浙B8888', ''),
 (3, 'carport_3', '15.00', '浙B3456', ''),
 (4, 'carport_4', '12.00', '浙A4356', ''),
 (5, 'carport_5', '11.00', '浙C982Y', ''),
@@ -102,14 +102,14 @@ CREATE TABLE IF NOT EXISTS `charge` (
   `status` tinyint(4) NOT NULL DEFAULT '10' COMMENT '缴费状态 10未缴费 20已缴费',
   `remark` varchar(255) NOT NULL COMMENT '备注',
   PRIMARY KEY (`charge_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='收费管理表' AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='收费管理表' AUTO_INCREMENT=10 ;
 
 --
 -- 转存表中的数据 `charge`
 --
 
 INSERT INTO `charge` (`charge_id`, `type_id`, `house_id`, `invoiceNum`, `createTime`, `paymentTime`, `handleName`, `chargeName`, `paymentMoney`, `status`, `remark`) VALUES
-(8, 1, 1, '24135346', 1462451147, 0, '不知道', '', '123.00', 10, '');
+(9, 2, 1, '34332342', 1462591665, 0, '戴宇锋', '', '120.00', 10, '');
 
 -- --------------------------------------------------------
 
@@ -153,15 +153,14 @@ CREATE TABLE IF NOT EXISTS `complain` (
   `status` tinyint(4) NOT NULL DEFAULT '10' COMMENT '审核状态 10未处理 20正在处理 30处理完成',
   `remark` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`complain_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='投诉管理表' AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='投诉管理表' AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `complain`
 --
 
 INSERT INTO `complain` (`complain_id`, `member_id`, `title`, `audit_name`, `create_time`, `modify_time`, `finish_time`, `content`, `handle_name`, `handle_info`, `status`, `remark`) VALUES
-(4, 1, 'LOL', '小白', 1461832977, 0, 1462181803, 'LOL', '小飞龙', '问题已经完全解决了', 30, '大家一起来玩啊'),
-(5, 1, '楼下装修', NULL, 1462182208, 0, 0, '经常半夜装修', NULL, NULL, 10, '请尽快处理');
+(6, 1, '楼下住户晚上吵', '小明', 1462591505, 0, 1462593140, '每天晚上12点之后会特别的吵', '王小奇', '您的投诉不符合要求', 30, '尽快过来调解');
 
 -- --------------------------------------------------------
 
@@ -181,17 +180,15 @@ CREATE TABLE IF NOT EXISTS `house` (
   `move_out_time` int(10) DEFAULT NULL,
   `remark` int(255) DEFAULT NULL,
   PRIMARY KEY (`house_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='住户信息表' AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='住户信息表' AUTO_INCREMENT=11 ;
 
 --
 -- 转存表中的数据 `house`
 --
 
 INSERT INTO `house` (`house_id`, `carport_id`, `building_id`, `house_name`, `telephone`, `unit_num`, `status`, `move_in_time`, `move_out_time`, `remark`) VALUES
-(1, 1, 1, '301', 2147483647, 48, 20, 2147483647, 1111111111, 0),
-(2, 1, 2, '', 2147483647, 34, 20, 0, NULL, 0),
-(3, 1, 2, '', 2147483647, 23, 20, 0, NULL, 0),
-(4, 2, 1, '', 2147483647, 34, 20, 0, NULL, 0);
+(1, 1, 1, '1丨101', 2147483647, 1, 20, 1462588047, NULL, 0),
+(2, 3, 1, '2丨302', 2147483647, 2, 20, 1462588080, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -217,9 +214,8 @@ CREATE TABLE IF NOT EXISTS `member` (
 --
 
 INSERT INTO `member` (`member_id`, `house_id`, `username`, `password`, `name`, `mobile`, `building_num`, `address_detail`, `is_super`) VALUES
-(1, 1, 'user01', '123456', '赵红静', '88888888', 1, '1号楼203', 0),
-(6, 1, 'admin', '123456', '戴宇峰', '1234567', 1, '临安大学', 1),
-(7, 1, 'user033', '123456', '王聪', '18854121500', 6, 'sd', 0);
+(1, 1, 'user01', '123456', '赵红静', '88888888', 1, '', 0),
+(6, 1, 'admin', '123456', '戴宇峰', '1234567', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -238,15 +234,14 @@ CREATE TABLE IF NOT EXISTS `repair` (
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '维修状态0等待维修 10维修中 20维修完成',
   `remark` varchar(255) NOT NULL,
   PRIMARY KEY (`repair_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='保修管理表' AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='保修管理表' AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `repair`
 --
 
 INSERT INTO `repair` (`repair_id`, `house_id`, `title`, `content`, `repair_time`, `create_time`, `repair_name`, `status`, `remark`) VALUES
-(3, 1, '马桶保修', '马桶漏水', 0, 0, '熊熊', 20, ''),
-(5, 1, '书桌维修', '我家的书桌脚坏了', 0, 1461830043, '', 0, '尽量快一点');
+(6, 1, '楼下住户晚上吵', '每天晚上12点之后会特别的吵', 0, 1462591276, '', 0, '尽快过来调解');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

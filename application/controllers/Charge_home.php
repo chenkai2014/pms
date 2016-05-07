@@ -16,6 +16,9 @@ class Charge_home extends CI_Controller{
         if(!empty($_GET['type_id'])){
             $condition['type_id']=$_GET['type_id'];
         }
+        if(!empty($_GET['status'])){
+            $condition['status']=$_GET['status'];
+        }
         $charge_list=$this->charge_model->getChargeList($condition);
         //整理缴费列表
         foreach($charge_list as $key=>$value){

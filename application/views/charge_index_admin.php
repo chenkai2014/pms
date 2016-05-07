@@ -40,8 +40,8 @@
                     <td><?php echo $value['type_name']; ?></td>
                     <td><?php echo $value['house_name']; ?></td>
                     <td><?php echo $value['invoiceNum']; ?></td>
-                    <td><?php echo date('Y-m-d H:i:s',$value['createTime']); ?></td>
-                    <td><?php echo date('Y-m-d H:i:s',$value['paymentTime']); ?></td>
+                    <td><?php echo date('Y-m-d',$value['createTime']); ?></td>
+                    <td><?php echo date('Y-m-d',$value['paymentTime']); ?></td>
                     <td><?php echo $value['handleName']; ?></td>
                     <td><?php echo $value['chargeName']; ?></td>
                     <td><?php echo $value['paymentMoney']; ?></td>

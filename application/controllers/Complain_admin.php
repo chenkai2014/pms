@@ -18,6 +18,9 @@ class Complain_admin extends CI_Controller{
             $member_info=$this->member_model->getMember(array('username'=>$_GET['username']));
             $condition['member_id']=$member_info['member_id'];
         }
+        if(!empty($_GET['status'])){
+            $condition['status']=$_GET['status'];
+        }
 
         $complain_list=$this->complain_model->getComplainList($condition);
         foreach($complain_list as $key=>$complain_info){

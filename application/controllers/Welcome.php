@@ -48,6 +48,7 @@ class Welcome extends CI_Controller {
 	//用户登录
 	public function login()
 	{
+		$this->load->model('house_model');
         $username=$_POST['username'];
 		$password=$_POST['password'];
 
@@ -69,6 +70,10 @@ class Welcome extends CI_Controller {
 			$this->session->set_userdata($arr);
 
 			$member_list=$this->member_model->getMemberList();
+			foreach($member_list as $key=>$value){
+				$house_info=$this->house_model->getHouseInfo(array('house_id'=>$value['house_id']));
+				$member_list[$key]['house_name']=$house_info['house_name'];
+			}
 			$data=array();
 			$data['member_list']=$member_list;
 
