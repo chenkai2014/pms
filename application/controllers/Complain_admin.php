@@ -21,6 +21,12 @@ class Complain_admin extends CI_Controller{
         if(!empty($_GET['status'])){
             $condition['status']=$_GET['status'];
         }
+        if(!empty($_GET['date_start'])){
+            $condition['create_time >=']=strtotime($_GET['date_start']);
+        }
+        if(!empty($_GET['date_end'])){
+            $condition['create_time <=']=strtotime($_GET['date_end']);
+        }
 
         $complain_list=$this->complain_model->getComplainList($condition);
         foreach($complain_list as $key=>$complain_info){

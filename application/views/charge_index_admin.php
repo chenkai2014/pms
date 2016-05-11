@@ -16,6 +16,11 @@
     <div class="row">
         <form method="get" class="form-inline" action="/index.php/Charge_admin/index">
             <div class="form-group">住房名：<input type="text" class="form-control" name="house_name"></div>
+            <div class="form-group">
+                生成日期：<input type="text" class="form-control" name="date_start" id="date_start" />
+                ~<input type="text" class="form-control" name="date_end" id="date_end" />
+            </div>
+
             <div class="form-group"><input type="submit" class="form-control btn-success" value="搜索"></div>
             <div class="form-group"><a class="form-control btn-danger" href="/index.php/Charge_admin/add">添加</a></div>
         </form>
@@ -41,7 +46,7 @@
                     <td><?php echo $value['house_name']; ?></td>
                     <td><?php echo $value['invoiceNum']; ?></td>
                     <td><?php echo date('Y-m-d',$value['createTime']); ?></td>
-                    <td><?php echo date('Y-m-d',$value['paymentTime']); ?></td>
+                    <td><?php if($value['paymentTime']==0){ echo '尚未缴费'; }else{echo date('Y-m-d',$value['paymentTime']);} ?></td>
                     <td><?php echo $value['handleName']; ?></td>
                     <td><?php echo $value['chargeName']; ?></td>
                     <td><?php echo $value['paymentMoney']; ?></td>
@@ -53,3 +58,10 @@
         </table>
     </div>
 </div>
+<link rel="stylesheet" href="/jquery/jquery-ui-1.11.4/jquery-ui.min.css" >
+<script src="/jquery/jquery.min.js"></script>
+<script src="/jquery/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $("#date_start").datepicker();
+    $("#date_end").datepicker();
+</script>

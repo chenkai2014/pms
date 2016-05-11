@@ -25,7 +25,7 @@
                 <tr>
                     <td><?php echo $value['title']; ?></td>
                     <td><?php echo $value['audit_name']; ?></td>
-                    <td><?php echo date('Y-m-d H:i',$value['create_time']); ?></td>
+                    <td><?php echo date('Y-m-d',$value['create_time']); ?></td>
                     <td><?php echo $value['content']; ?></td>
                     <td><?php echo $value['handle_name']; ?></td>
                     <td><?php if(empty($value['handle_info'])){echo '未完成';}else{echo $value['handle_info'];}  ?></td>

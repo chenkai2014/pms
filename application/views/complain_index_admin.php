@@ -24,6 +24,10 @@
                 <option value="30">处理完成</option>
             </select>
             </div>
+            <div class="form-group">
+                投诉日期：<input type="text" class="form-control" name="date_start" id="date_start" />
+                ~<input type="text" class="form-control" name="date_end" id="date_end" />
+            </div>
             <div class="form-group"><input class="form-control btn-success" type="submit" value="搜索"></div>
         </form>
     </div>
@@ -47,8 +51,8 @@
                     <td><?php echo $value['title']; ?></td>
                     <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['audit_name']; ?></td>
-                    <td><?php echo date('Y-m-d H:i:s',$value['create_time']); ?></td>
-                    <td><?php if($value['finish_time']==0){echo '未完成';}else{echo date('Y-m-d H:i:s',$value['finish_time']);} ?></td>
+                    <td><?php echo date('Y-m-d',$value['create_time']); ?></td>
+                    <td><?php if($value['finish_time']==0){echo '未完成';}else{echo date('Y-m-d',$value['finish_time']);} ?></td>
                     <td><?php echo $value['content']; ?></td>
                     <td><?php echo $value['handle_name']; ?></td>
                     <td><?php echo $value['handle_info']; ?></td>
@@ -60,3 +64,10 @@
         </table>
     </div>
 </div>
+<link rel="stylesheet" href="/jquery/jquery-ui-1.11.4/jquery-ui.min.css" >
+<script src="/jquery/jquery.min.js"></script>
+<script src="/jquery/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $("#date_start").datepicker();
+    $("#date_end").datepicker();
+</script>

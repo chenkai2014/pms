@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					用户名：<input type="text" class="form-control" name="username">
 				</div>
 				<div class="form-group">
-					密码：<input type="text" class="form-control" name="password">
+					密码：<input type="password" class="form-control" name="password">
 				</div>
 				<div class="form-group">
 					<input class="btn btn-primary"  type="submit" value="登录">

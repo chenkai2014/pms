@@ -16,6 +16,12 @@ class Charge_admin extends CI_Controller{
             $house_info=$this->house_model->getHouseInfo(array('house_name'=>$_GET['house_name']));
             $condition['house_id']=$house_info['house_id'];
         }
+        if(!empty($_GET['date_start'])){
+            $condition['createTime >=']=strtotime($_GET['date_start']);
+        }
+        if(!empty($_GET['date_end'])){
+            $condition['createTime <=']=strtotime($_GET['date_end']);
+        }
         $charge_list=$this->charge_model->getChargeList($condition);
         //整理缴费列表
         foreach($charge_list as $key=>$value){

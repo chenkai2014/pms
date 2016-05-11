@@ -19,7 +19,7 @@
                 <tr class="success">
                     <td>住房名:<?php echo $member_info['extend_house']['house_name']; ?></td>
                     <td>房间单元号:<?php echo $member_info['extend_house']['unit_num']; ?></td>
-                    <td>房间状态:<?php echo $member_info['extend_house']['status']; ?></td>
+                    <td>房间状态:<?php if($member_info['extend_house']['status']==20){ echo '已入住';}else{ echo '未入住'; }  ?></td>
                 </tr>
                 <tr class="warning">
                     <td>车位编号名:<?php echo $member_info['extend_carport']['carport_name']; ?></td>
