@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-05-07 06:09:46
+-- Generation Time: 2016-05-11 08:47:33
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -180,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `house` (
   `move_out_time` int(10) DEFAULT NULL,
   `remark` int(255) DEFAULT NULL,
   PRIMARY KEY (`house_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='住户信息表' AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='住户信息表' AUTO_INCREMENT=12 ;
 
 --
 -- 转存表中的数据 `house`
@@ -188,7 +188,8 @@ CREATE TABLE IF NOT EXISTS `house` (
 
 INSERT INTO `house` (`house_id`, `carport_id`, `building_id`, `house_name`, `telephone`, `unit_num`, `status`, `move_in_time`, `move_out_time`, `remark`) VALUES
 (1, 1, 1, '1丨101', 2147483647, 1, 20, 1462588047, NULL, 0),
-(2, 3, 1, '2丨302', 2147483647, 2, 20, 1462588080, NULL, 0);
+(2, 3, 1, '2丨302', 2147483647, 2, 20, 1462588080, NULL, 0),
+(11, 8, 2, '3丨101', 2147483647, 21, 20, 1462948548, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -204,10 +205,10 @@ CREATE TABLE IF NOT EXISTS `member` (
   `name` varchar(255) NOT NULL COMMENT '姓名',
   `mobile` varchar(255) NOT NULL COMMENT '手机号',
   `building_num` int(10) NOT NULL COMMENT '楼宇号',
-  `address_detail` varchar(255) NOT NULL COMMENT '详细地址',
+  `address_detail` varchar(255) DEFAULT NULL COMMENT '详细地址',
   `is_super` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否管理员 1是 0否',
   PRIMARY KEY (`member_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- 转存表中的数据 `member`
@@ -215,7 +216,10 @@ CREATE TABLE IF NOT EXISTS `member` (
 
 INSERT INTO `member` (`member_id`, `house_id`, `username`, `password`, `name`, `mobile`, `building_num`, `address_detail`, `is_super`) VALUES
 (1, 1, 'user01', '123456', '赵红静', '88888888', 1, '', 0),
-(6, 1, 'admin', '123456', '戴宇峰', '1234567', 1, '', 1);
+(6, 1, 'admin', '123456', '戴宇峰', '1234567', 1, '', 1),
+(9, 1, 'user02', '123456', '王聪', '', 5, '', 0),
+(10, 11, 'user_test', '123456', '大白兔', '18855886688', 2, '无', 0),
+(11, 1, 'xiangbuchu', 'xiangbuchu', '河马', '18854121500', 2, '', 0);
 
 -- --------------------------------------------------------
 

@@ -15,6 +15,16 @@
     <div class="row">
         <form method="get" class="form-inline" action="/index.php/Repair_admin/index">
             <div class="form-group">住房名：<input class="form-control" type="text" name="house_name"></div>
+            <div class="form-group">维修状态：<select class="form-control" name="status">
+                    <option value=""></option>
+                    <option value="0">未维修</option>
+                    <option value="10">维修中</option>
+                    <option value="20">维修完成</option>
+                </select></div>
+            <div class="form-group">
+                报修日期：<input type="text" class="form-control" name="date_start" id="date_start" />
+                ~<input type="text" class="form-control" name="date_end" id="date_end" />
+            </div>
             <div class="form-group"><input class="form-control btn-success" type="submit" value="搜索"></div>
         </form>
 
@@ -37,8 +47,8 @@
                     <td><?php echo $value['house_name']; ?></td>
                     <td><?php echo $value['title']; ?></td>
                     <td><?php echo $value['content']; ?></td>
-                    <td><?php echo date('Y-m-d H:i',$value['create_time']); ?></td>
-                    <td><?php if($value['repair_time']!=0){echo date('Y-m-d H:i',$value['repair_time']);} ?></td>
+                    <td><?php echo date('Y-m-d',$value['create_time']); ?></td>
+                    <td><?php if($value['repair_time']!=0){echo date('Y-m-d',$value['repair_time']);} ?></td>
                     <td><?php echo $value['repair_name']; ?></td>
                     <td><?php if($value['status']==0){echo '未维修';}elseif($value['status']==10){echo '维修中';}elseif($value['status']==20){echo '维修完成';}  ?></td>
                     <td><?php echo $value['remark']; ?></td>
@@ -48,3 +58,10 @@
         </table>
     </div>
 </div>
+<link rel="stylesheet" href="/jquery/jquery-ui-1.11.4/jquery-ui.min.css" >
+<script src="/jquery/jquery.min.js"></script>
+<script src="/jquery/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $("#date_start").datepicker();
+    $("#date_end").datepicker();
+</script>

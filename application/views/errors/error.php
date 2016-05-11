@@ -1,10 +1,6 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2016/3/5
- * Time: 21:49
- */
-?>
-<?php print_r('系统错误！'); ?>
-<?php print_r('登录失败！'); ?>
+
+<div class="container">
+    <div class="row">
+        <h1 class="h1"><?php echo $error; ?></h1>
+    </div>
+</div>

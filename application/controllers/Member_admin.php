@@ -33,15 +33,25 @@ class Member_admin extends CI_Controller{
 
 
     public function add(){
+        $this->load->model('building_model');
+        $this->load->model('house_model');
+
+        $building_list=$this->building_model->getBuildingList();
+        $house_list=$this->house_model->getHouseList();
+
+        $data=array();
+        $data['building_list']=$building_list;
+        $data['house_list']=$house_list;
+
         $this->load->view('templates/header_admin');
-        $this->load->view('member_add_admin');
+        $this->load->view('member_add_admin',$data);
     }
 
     public function save(){
         $this->load->model('member_model');
 
         $data=array();
-        $data['house_name']=$_POST['house_name'];
+        $data['house_id']=$_POST['house_id'];
         $data['username']=$_POST['username'];
         $data['password']=$_POST['password'];
         $data['name']=$_POST['name'];

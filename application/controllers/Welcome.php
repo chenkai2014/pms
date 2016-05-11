@@ -102,6 +102,8 @@ class Welcome extends CI_Controller {
 		}
 		else
 		{
+			$data=array();
+			$data['error']='用户名或密码错误';
 			$this->load->view('errors/error.php',$data);
 		}
 	}

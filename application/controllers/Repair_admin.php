@@ -15,6 +15,15 @@ class Repair_admin extends CI_Controller{
             $house_info=$this->house_model->getHouseInfo(array('house_name'=>$_GET['house_name']));
             $condition['house_id']=$house_info['house_id'];
         }
+        if(!empty($_GET['status'])){
+            $condition['status']=$_GET['status'];
+        }
+        if(!empty($_GET['date_start'])){
+            $condition['create_time >=']=strtotime($_GET['date_start']);
+        }
+        if(!empty($_GET['date_end'])){
+            $condition['create_time <=']=strtotime($_GET['date_end']);
+        }
 
         $repair_list=$this->repair_model->getRepairList($condition);
         if(!empty($repair_list)){
